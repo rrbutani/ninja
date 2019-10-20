@@ -448,10 +448,10 @@ bool ManifestParser::ParseFileInclude(bool new_scope, string* err) {
       break;
     }
     rel_path = let_value.Evaluate(env_);
-    if (rel_path.find("./") == 0 || rel_path.find("/./") != string::npos ||
-        rel_path.find("../") == 0 || rel_path.find("/../") != string::npos) {
-      return lexer_.Error("invalid use of '.' or '..' in chdir", err);
-    }
+    // if (rel_path.find("./") == 0 || rel_path.find("/./") != string::npos ||
+    //     rel_path.find("../") == 0 || rel_path.find("/../") != string::npos) {
+    //   return lexer_.Error("invalid use of '.' or '..' in chdir", err);
+    // }
     if (file_reader_->Getcwd(&prev_cwd, &dir_err) != FileReader::Okay) {
       *err = "Getcwd: " + dir_err;
       return false;  // Can return because has_chdir is always false here.
